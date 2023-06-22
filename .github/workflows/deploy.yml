@@ -2,7 +2,7 @@ name: Deployment
 on:
   push:
     branches:
-      - master
+      - masterz
       - dev
 env:
   MONGODB_DB_NAME: gha-demo
@@ -10,8 +10,8 @@ jobs:
   test:
     env:
       MONGODB_CLUSTER_ADDRESS: TESTCLUSTERADDRESS
-      MONGODB_USERNAME: TESTUSERNAME
-      MONGODB_PASSWORD: TESTPASSWORD
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }} # secret added in settings(GITHUB)
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
       PORT: 8080
     environment: testing
     runs-on: ubuntu-latest
